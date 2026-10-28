@@ -3,23 +3,38 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Bratti Bakes">
+    <meta name="description" content="Bratti Bakes creates made-to-order bakes for life's sweet moments.">
     <title>Bratti Bakes</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="/assets/css/styles.css">
+    <script src="/assets/js/main.js" defer></script>
 </head>
 <body>
     <header class="site-header">
         <a class="brand" href="/" aria-label="Bratti Bakes home">Bratti Bakes</a>
+        <nav aria-label="Main navigation">
+            <a href="/gallery.html">Gallery</a>
+            <a href="/about.html">About</a>
+            <a href="/contact.html">Contact</a>
+        </nav>
     </header>
     <main>
-        <h1>Bratti Bakes</h1>
-        <p>Website coming soon.</p>
+        <section class="home-intro">
+            <p class="eyebrow">Baked with care</p>
+            <h1>A little sweetness<br>for your next occasion.</h1>
+            <p>Made-to-order treats from Bratti Bakes.</p>
+            <a class="button-link" href="/contact.html">Get in touch</a>
+        </section>
+        <section class="home-gallery-link" aria-labelledby="gallery-heading">
+            <div>
+                <p class="eyebrow">Fresh from the oven</p>
+                <h2 id="gallery-heading">A taste of what's possible</h2>
+            </div>
+            <a href="/gallery.html">Browse the gallery <span aria-hidden="true">&rarr;</span></a>
+        </section>
     </main>
     <footer class="site-footer">
-        <p>&copy; <span id="year"></span> Bratti Bakes</p>
+        <p>&copy; <span data-year></span> Bratti Bakes</p>
+        <a href="/contact.html">Contact</a>
     </footer>
-    <script>
-        document.getElementById('year').textContent = new Date().getFullYear();
-    </script>
 </body>
 </html>

@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Contact Bratti Bakes about a custom order.">
+    <title>Contact | Bratti Bakes</title>
+    <link rel="stylesheet" href="/assets/css/styles.css">
+    <script src="/assets/js/main.js" defer></script>
+    <script src="/assets/js/contact.js" defer></script>
+</head>
+<body>
+    <header class="site-header">
+        <a class="brand" href="/" aria-label="Bratti Bakes home">Bratti Bakes</a>
+        <nav aria-label="Main navigation">
+            <a href="/gallery.html">Gallery</a>
+            <a href="/about.html">About</a>
+            <a href="/contact.html" aria-current="page">Contact</a>
+        </nav>
+    </header>
+    <main class="page-main contact-layout">
+        <section class="page-heading">
+            <p class="eyebrow">Let's make something sweet</p>
+            <h1>Contact</h1>
+            <p>Tell us what you're celebrating and what you have in mind.</p>
+        </section>
+        <form class="contact-form" data-contact-form>
+            <label for="name">Name</label>
+            <input id="name" name="name" autocomplete="name" required>
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" autocomplete="email" required>
+            <label for="message">What can we bake for you?</label>
+            <textarea id="message" name="message" rows="6" required></textarea>
+            <button class="button-link" type="submit">Send inquiry</button>
+            <p class="form-status" data-form-status role="status" aria-live="polite"></p>
+        </form>
+    </main>
+    <footer class="site-footer">
+        <p>&copy; <span data-year></span> Bratti Bakes</p>
+        <a href="/gallery.html">Gallery</a>
+    </footer>
+</body>
+</html>
