@@ -23,7 +23,7 @@ The Pages Function at `functions/api/gallery.js` lists all KV keys, loads their 
 
 ## Contact form
 
-The contact form submits to Web3Forms from `assets/js/contact.js`. Replace the `YOUR_WEB3FORMS_ACCESS_KEY` placeholder there with the access key for the Bratti Bakes Web3Forms form. This is a public form key, not a private API secret. No Pages Function or server-side secret binding is used for contact submissions.
+The contact form submits order inquiries to Web3Forms from `assets/js/contact.js`. Replace the `YOUR_WEB3FORMS_ACCESS_KEY` placeholder there with the access key for the Bratti Bakes Web3Forms form. This is a public form key, not a private API secret. Optional reference image uploads require a Web3Forms Pro plan. The optional marketing checkbox records the customer's choice with the inquiry; it does not sync addresses to a separate email-marketing list. No Pages Function or server-side secret binding is used for contact submissions.
 
 ## Sitemap
 

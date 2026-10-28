@@ -21,16 +21,65 @@
     <main class="page-main contact-layout">
         <section class="page-heading">
             <p class="eyebrow">Let's make something sweet</p>
-            <h1>Contact</h1>
-            <p>Tell us what you're celebrating and what you have in mind.</p>
+            <h1>Custom order inquiry</h1>
+            <p>Tell us what you have in mind. We currently ship within the United States only; payment is arranged after we confirm your order.</p>
         </section>
         <form class="contact-form" data-contact-form>
-            <label for="name">Name</label>
-            <input id="name" name="name" autocomplete="name" required>
-            <label for="email">Email</label>
-            <input id="email" name="email" type="email" autocomplete="email" required>
-            <label for="message">What can we bake for you?</label>
-            <textarea id="message" name="message" rows="6" required></textarea>
+            <fieldset>
+                <legend>Your details</legend>
+                <label for="name">Name</label>
+                <input id="name" name="name" autocomplete="name" required>
+                <label for="email">Email</label>
+                <input id="email" name="email" type="email" autocomplete="email" required>
+                <label for="phone">Phone <span>(optional)</span></label>
+                <input id="phone" name="phone" type="tel" autocomplete="tel">
+            </fieldset>
+
+            <fieldset>
+                <legend>Order details</legend>
+                <label for="order-type">What would you like?</label>
+                <select id="order-type" name="order_type" required>
+                    <option value="" disabled selected>Select an item</option>
+                    <option value="Cake">Cake</option>
+                    <option value="Cookies">Cookies</option>
+                    <option value="Other baked goods">Other baked goods</option>
+                </select>
+                <label for="toppings">Toppings, flavors, or decorations</label>
+                <textarea id="toppings" name="toppings" rows="3" placeholder="Share any flavors, toppings, or design details."></textarea>
+                <label for="message">Anything else we should know?</label>
+                <textarea id="message" name="message" rows="4" required></textarea>
+                <label for="reference-image">Reference picture <span>(optional, one image, up to 1 MB)</span></label>
+                <input id="reference-image" name="attachment" type="file" accept="image/*">
+            </fieldset>
+
+            <fieldset>
+                <legend>Shipping destination</legend>
+                <p class="form-note">Shipping is available within the United States only. We can confirm the shipping cost when we discuss your order.</p>
+                <label for="shipping-state">State</label>
+                <select id="shipping-state" name="shipping_state" autocomplete="address-level1" required>
+                    <option value="" disabled selected>Select a state</option>
+                    <option>Alabama</option><option>Alaska</option><option>Arizona</option><option>Arkansas</option>
+                    <option>California</option><option>Colorado</option><option>Connecticut</option><option>Delaware</option>
+                    <option>Florida</option><option>Georgia</option><option>Hawaii</option><option>Idaho</option>
+                    <option>Illinois</option><option>Indiana</option><option>Iowa</option><option>Kansas</option>
+                    <option>Kentucky</option><option>Louisiana</option><option>Maine</option><option>Maryland</option>
+                    <option>Massachusetts</option><option>Michigan</option><option>Minnesota</option><option>Mississippi</option>
+                    <option>Missouri</option><option>Montana</option><option>Nebraska</option><option>Nevada</option>
+                    <option>New Hampshire</option><option>New Jersey</option><option>New Mexico</option><option>New York</option>
+                    <option>North Carolina</option><option>North Dakota</option><option>Ohio</option><option>Oklahoma</option>
+                    <option>Oregon</option><option>Pennsylvania</option><option>Rhode Island</option><option>South Carolina</option>
+                    <option>South Dakota</option><option>Tennessee</option><option>Texas</option><option>Utah</option>
+                    <option>Vermont</option><option>Virginia</option><option>Washington</option><option>West Virginia</option>
+                    <option>Wisconsin</option><option>Wyoming</option><option>District of Columbia</option>
+                </select>
+                <label for="shipping-zip">ZIP code</label>
+                <input id="shipping-zip" name="shipping_zip" autocomplete="postal-code" inputmode="numeric" pattern="[0-9]{5}(-[0-9]{4})?" placeholder="12345" required>
+            </fieldset>
+
+            <label class="consent-option" for="marketing-consent">
+                <input id="marketing-consent" name="marketing_consent" type="checkbox" value="yes">
+                <span>I'd like to receive occasional Bratti Bakes news and promotions by email.</span>
+            </label>
             <button class="button-link" type="submit">Send inquiry</button>
             <p class="form-status" data-form-status role="status" aria-live="polite"></p>
         </form>
