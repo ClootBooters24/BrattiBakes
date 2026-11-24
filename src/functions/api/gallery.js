@@ -1,6 +1,6 @@
-function imageUrlFor(imageKey, publicBaseUrl) {
+function imageUrlFor(imageKey, request) {
     const encodedKey = imageKey.split("/").map(encodeURIComponent).join("/");
-    return `${publicBaseUrl}/${encodedKey}`;
+    return new URL(`/images/${encodedKey}`, request.url).toString();
 }
 
 const imageExtensions = new Set([".avif", ".gif", ".jpeg", ".jpg", ".png", ".webp"]);
@@ -41,7 +41,7 @@ async function loadMetadata(kv) {
     return metadata;
 }
 
-async function listBucketImages(bucket, metadata, publicBaseUrl) {
+async function listBucketImages(bucket, metadata, request) {
     const entries = [];
     let cursor;
 
@@ -63,7 +63,7 @@ async function listBucketImages(bucket, metadata, publicBaseUrl) {
                 title,
                 category: override.category || category,
                 alt: override.alt || `${title} from ${category}`,
-                imageUrl: imageUrlFor(object.key, publicBaseUrl)
+                imageUrl: imageUrlFor(object.key, request)
             });
         }
 
@@ -73,17 +73,11 @@ async function listBucketImages(bucket, metadata, publicBaseUrl) {
     return entries;
 }
 
-export async function onRequest({ env }) {
-    if (!env.R2_PUBLIC_URL) {
-        return Response.json({ error: "Gallery service is not configured." }, { status: 500 });
-    }
-
-    const publicBaseUrl = env.R2_PUBLIC_URL.replace(/\/+$/, "");
-
+export async function onRequest({ request, env }) {
     try {
         if (env.GALLERY_BUCKET) {
             const metadata = await loadMetadata(env.GALLERY_KV);
-            const entries = await listBucketImages(env.GALLERY_BUCKET, metadata, publicBaseUrl);
+            const entries = await listBucketImages(env.GALLERY_BUCKET, metadata, request);
             return Response.json(entries, {
                 headers: { "Cache-Control": "public, max-age=60" }
             });
@@ -107,7 +101,7 @@ export async function onRequest({ env }) {
                 return {
                     ...entry,
                     id: entry.id ?? name,
-                    imageUrl: imageUrlFor(entry.imageKey, publicBaseUrl)
+                    imageUrl: imageUrlFor(entry.imageKey, request)
                 };
             }));
 

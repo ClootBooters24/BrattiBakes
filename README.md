@@ -1,13 +1,17 @@
 # Bratti Bakes
 
-Static Cloudflare Pages site kept under `src/`. There is no build step, package manager, or Node.js runtime requirement.
+Static Cloudflare Workers + Assets site kept under `src/`. There is no build step or package manager requirement.
 
-## Pages setup
+## Deploy
 
-1. In Cloudflare Pages, set the project root directory to `/src`, leave the build command empty, and set the build output directory to `.`.
-2. Open **Settings > Functions > R2 bucket bindings** and bind `brattibakes-r2` as `GALLERY_BUCKET`. The gallery automatically lists image objects from the bucket and skips non-image files and objects under `logos/`.
-3. Add `R2_PUBLIC_URL` as a production and preview environment variable. Set it to the public base URL for the R2 bucket, without a trailing slash.
-4. Optionally bind a KV namespace as `GALLERY_KV` to override generated gallery titles and alt text. Each value must be JSON with an `imageKey` matching an object key in the R2 bucket.
+Cloudflare Workers Builds should use `src` as the root directory and `npx wrangler deploy` as the deploy command. The checked-in `src/wrangler.json` configures the Worker, Assets, and `brattibakes-r2` binding. To deploy locally:
+
+```sh
+cd src
+npx wrangler deploy
+```
+
+The Worker serves R2 objects through `/images/`, so the bucket does not need public access enabled. Optionally add a KV namespace binding named `GALLERY_KV` to override generated gallery titles and alt text. Each KV value must be JSON with an `imageKey` matching an object key in the R2 bucket.
 
 Example KV value:
 
@@ -19,7 +23,7 @@ Example KV value:
 }
 ```
 
-The Pages Function at `functions/api/gallery.js` lists image objects through `GALLERY_BUCKET`, generates category and filename captions, and adds an `imageUrl` using `R2_PUBLIC_URL`. If `GALLERY_BUCKET` is not bound, it falls back to the existing KV-based gallery. The header logo is served from `logos/Logo.webp` through `/api/brand`. Ensure the public base URL can serve these objects; the bucket dashboard currently shows public access as disabled.
+The Worker entrypoint routes `/api/gallery`, `/api/brand`, and `/images/*`; other requests are served from Workers Assets. The gallery lists image objects through `GALLERY_BUCKET`, generates category and filename captions, and skips non-image files and objects under `logos/`. If `GALLERY_BUCKET` is unavailable, the gallery falls back to KV records. The header logo is served from `logos/Logo.webp` through the same private R2 image route.
 
 ## Contact form
 
