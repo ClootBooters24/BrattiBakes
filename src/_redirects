@@ -1,7 +1,7 @@
 # Canonical homepage URL.
 /index.html  /  301
 
-# Clean URLs for the static content pages.
-/gallery     /gallery.html  301
-/about       /about.html    301
-/contact     /contact.html  301
+# Redirect legacy .html URLs to clean paths.
+/gallery.html  /gallery   301
+/about.html    /about     301
+/contact.html  /contact   301

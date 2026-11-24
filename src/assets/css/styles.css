@@ -44,7 +44,7 @@ a { color: inherit; }
     text-decoration: none;
 }
 
-.brand img { display: block; width: 10rem; max-width: 42vw; height: auto; mix-blend-mode: multiply; }
+.brand img { display: block; width: 10rem; max-width: 42vw; height: auto; filter: brightness(1.12); mix-blend-mode: multiply; }
 
 nav { display: flex; flex-wrap: wrap; gap: clamp(1rem, 3vw, 2rem); }
 
