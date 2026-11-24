@@ -1,5 +1,28 @@
 const grid = document.querySelector("[data-gallery-grid]");
 const status = document.querySelector("[data-gallery-status]");
+const filterControls = document.querySelector("[data-gallery-filter-controls]");
+const categoryFilter = document.querySelector("[data-gallery-filter]");
+let galleryEntries = [];
+
+categoryFilter.addEventListener("change", () => {
+    const selectedCategory = categoryFilter.value;
+    const visibleEntries = selectedCategory
+        ? galleryEntries.filter((entry) => entry.category === selectedCategory)
+        : galleryEntries;
+    renderGallery(visibleEntries);
+});
+
+function configureCategoryFilter(entries) {
+    const categories = [...new Set(entries.map((entry) => entry.category).filter(Boolean))]
+        .sort((first, second) => first.localeCompare(second));
+
+    categoryFilter.replaceChildren(new Option("All categories", ""));
+    for (const category of categories) {
+        categoryFilter.add(new Option(category, category));
+    }
+
+    filterControls.hidden = categories.length < 2;
+}
 
 function renderGallery(entries) {
     grid.replaceChildren();
@@ -47,7 +70,9 @@ async function loadGallery() {
         const entries = await response.json();
         if (!Array.isArray(entries)) throw new Error("Unexpected gallery response");
 
-        renderGallery(entries);
+        galleryEntries = entries;
+        configureCategoryFilter(galleryEntries);
+        renderGallery(galleryEntries);
     } catch {
         status.textContent = "The gallery couldn't be loaded right now. Please try again later.";
     } finally {

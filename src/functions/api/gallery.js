@@ -15,7 +15,8 @@ function labelFrom(value) {
 function isGalleryImage(key) {
     const normalizedKey = key.toLowerCase();
     const extension = normalizedKey.slice(normalizedKey.lastIndexOf("."));
-    return !normalizedKey.startsWith("logos/") && imageExtensions.has(extension);
+    const excludedPrefixes = ["logos/", "store/"];
+    return !excludedPrefixes.some((prefix) => normalizedKey.startsWith(prefix)) && imageExtensions.has(extension);
 }
 
 async function loadMetadata(kv) {
