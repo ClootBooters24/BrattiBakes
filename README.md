@@ -23,7 +23,7 @@ Example KV value:
 }
 ```
 
-The Worker entrypoint routes `/api/gallery`, `/api/brand`, and `/images/*`; other requests are served from Workers Assets. The gallery lists image objects through `GALLERY_BUCKET`, generates category and filename captions, and skips non-image files and objects under `logos/`. If `GALLERY_BUCKET` is unavailable, the gallery falls back to KV records. The header logo is served from `logos/Logo.webp` through the same private R2 image route.
+The Worker entrypoint routes `/api/gallery`, `/api/brand`, and `/images/*`; other requests are served from Workers Assets. The gallery lists image objects through `GALLERY_BUCKET`, displays category labels without exposing generated filenames, and skips non-image files and objects under `logos/`. Optional KV titles and alt text provide human-written captions. If `GALLERY_BUCKET` is unavailable, the gallery falls back to KV records. The header logo is served from `logos/Logo.webp` through the same private R2 image route.
 
 ## Contact form
 

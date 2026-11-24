@@ -51,18 +51,16 @@ async function listBucketImages(bucket, metadata, request) {
             if (!isGalleryImage(object.key)) continue;
 
             const override = metadata.get(object.key) ?? {};
-            const fileName = object.key.split("/").pop();
             const categoryPath = object.key.split("/").slice(0, -1).join("/");
             const category = labelFrom(categoryPath || "Bratti Bakes");
-            const title = override.title || labelFrom(fileName);
 
             entries.push({
                 ...override,
                 id: override.id ?? object.key,
                 imageKey: object.key,
-                title,
+                ...(override.title ? { title: override.title } : {}),
                 category: override.category || category,
-                alt: override.alt || `${title} from ${category}`,
+                alt: override.alt || `${category} creation by Bratti Bakes`,
                 imageUrl: imageUrlFor(object.key, request)
             });
         }
