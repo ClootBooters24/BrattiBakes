@@ -1,24 +1,33 @@
 const grid = document.querySelector("[data-gallery-grid]");
 const status = document.querySelector("[data-gallery-status]");
 const filterControls = document.querySelector("[data-gallery-filter-controls]");
-const categoryFilter = document.querySelector("[data-gallery-filter]");
 let galleryEntries = [];
 
-categoryFilter.addEventListener("change", () => {
-    const selectedCategory = categoryFilter.value;
+function showCategory(selectedCategory) {
+    for (const button of filterControls.children) {
+        button.setAttribute("aria-pressed", String(button.dataset.category === selectedCategory));
+    }
+
     const visibleEntries = selectedCategory
         ? galleryEntries.filter((entry) => entry.category === selectedCategory)
         : galleryEntries;
     renderGallery(visibleEntries);
-});
+}
 
 function configureCategoryFilter(entries) {
     const categories = [...new Set(entries.map((entry) => entry.category).filter(Boolean))]
         .sort((first, second) => first.localeCompare(second));
 
-    categoryFilter.replaceChildren(new Option("All categories", ""));
-    for (const category of categories) {
-        categoryFilter.add(new Option(category, category));
+    filterControls.replaceChildren();
+    for (const category of ["", ...categories]) {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = "gallery-filter-button";
+        button.textContent = category || "All";
+        button.dataset.category = category;
+        button.setAttribute("aria-pressed", String(category === ""));
+        button.addEventListener("click", () => showCategory(category));
+        filterControls.append(button);
     }
 
     filterControls.hidden = categories.length < 2;
