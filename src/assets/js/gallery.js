@@ -14,9 +14,22 @@ function renderGallery(entries) {
         figure.className = "gallery-item";
         figure.append(image);
 
-        if (entry.title) {
+        if (entry.title || entry.category) {
             const caption = document.createElement("figcaption");
-            caption.textContent = entry.title;
+            if (entry.category) {
+                const category = document.createElement("span");
+                category.className = "gallery-category";
+                category.textContent = entry.category;
+                caption.append(category);
+            }
+
+            if (entry.title) {
+                const title = document.createElement("span");
+                title.className = "gallery-title";
+                title.textContent = entry.title;
+                caption.append(title);
+            }
+
             figure.append(caption);
         }
 

@@ -1,11 +1,12 @@
 :root {
     color-scheme: light;
-    --ink: #322521;
-    --muted: #715e56;
-    --paper: #fffaf5;
-    --rose: #a64e4a;
-    --rose-dark: #773634;
-    --line: #e6d9ce;
+    --ink: #202827;
+    --muted: #596966;
+    --paper: #fffdf9;
+    --teal: #35aeb8;
+    --teal-dark: #147984;
+    --bake: #8d674e;
+    --line: #d7e5e1;
     font-family: Georgia, "Times New Roman", serif;
     color: var(--ink);
     background: var(--paper);
@@ -35,11 +36,15 @@ a { color: inherit; }
 .site-header { border-bottom: 1px solid var(--line); }
 
 .brand {
-    color: var(--rose-dark);
+    display: inline-flex;
+    align-items: center;
+    color: var(--teal-dark);
     font-size: 1.35rem;
     font-weight: 700;
     text-decoration: none;
 }
+
+.brand img { display: block; width: 10rem; max-width: 42vw; height: auto; mix-blend-mode: multiply; }
 
 nav { display: flex; flex-wrap: wrap; gap: clamp(1rem, 3vw, 2rem); }
 
@@ -51,7 +56,7 @@ nav a,
 }
 
 nav a { text-decoration: none; }
-nav a[aria-current="page"] { color: var(--rose-dark); text-decoration: underline; }
+nav a[aria-current="page"] { color: var(--teal-dark); text-decoration: underline; }
 
 main { min-height: calc(100vh - 9rem); }
 
@@ -61,13 +66,13 @@ main { min-height: calc(100vh - 9rem); }
     align-content: center;
     justify-items: center;
     padding: 5rem 1.5rem;
-    background: radial-gradient(ellipse at 50% 43%, #f5e1d4 0%, #fff1e6 34%, var(--paper) 74%);
+    background: radial-gradient(ellipse at 50% 43%, #d7f0ed 0%, #eff8f5 38%, var(--paper) 78%);
     text-align: center;
 }
 
 .eyebrow {
     margin: 0 0 0.8rem;
-    color: var(--rose-dark);
+    color: var(--teal-dark);
     font: 700 0.78rem/1.4 system-ui, sans-serif;
     text-transform: uppercase;
 }
@@ -98,14 +103,14 @@ h1 {
     margin-top: 1.1rem;
     padding: 0.7rem 1.2rem;
     border: 0;
-    background: var(--rose-dark);
+    background: var(--teal-dark);
     color: white;
     cursor: pointer;
     font: 600 0.9rem/1.3 system-ui, sans-serif;
     text-decoration: none;
 }
 
-.button-link:hover { background: var(--rose); }
+.button-link:hover { background: var(--teal); }
 
 .home-gallery-link {
     display: flex;
@@ -117,7 +122,7 @@ h1 {
 }
 
 .home-gallery-link h2 { margin: 0; font-size: clamp(1.7rem, 4vw, 2.7rem); font-weight: 500; }
-.home-gallery-link > a { color: var(--rose-dark); font: 600 0.95rem/1.5 system-ui, sans-serif; }
+.home-gallery-link > a { color: var(--teal-dark); font: 600 0.95rem/1.5 system-ui, sans-serif; }
 
 .page-main {
     width: min(100% - 2.5rem, 76rem);
@@ -134,7 +139,9 @@ h1 {
 .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr)); gap: 1.25rem; }
 .gallery-item { margin: 0; }
 .gallery-item img { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; background: #f0e5dc; }
-.gallery-item figcaption { padding-top: 0.65rem; font: 0.95rem/1.5 system-ui, sans-serif; }
+.gallery-item figcaption { display: grid; gap: 0.12rem; padding-top: 0.65rem; font: 0.95rem/1.5 system-ui, sans-serif; }
+.gallery-category { color: var(--teal-dark); font-size: 0.72rem; font-weight: 700; text-transform: uppercase; }
+.gallery-title { color: var(--bake); }
 
 .about-content { max-width: 52rem; }
 .about-content > p:last-child { max-width: 38rem; color: var(--muted); font: 1.15rem/1.8 system-ui, sans-serif; }
@@ -149,15 +156,15 @@ h1 {
 .contact-form textarea,
 .contact-form select { width: 100%; padding: 0.8rem; border: 1px solid #cdbdb1; border-radius: 0; background: white; color: var(--ink); font: inherit; }
 .contact-form input[type="file"] { padding: 0.6rem; }
-.contact-form input[type="checkbox"] { width: 1.1rem; height: 1.1rem; flex: 0 0 auto; accent-color: var(--rose-dark); }
+.contact-form input[type="checkbox"] { width: 1.1rem; height: 1.1rem; flex: 0 0 auto; accent-color: var(--teal-dark); }
 .contact-form input:focus,
 .contact-form textarea:focus,
-.contact-form select:focus { outline: 2px solid var(--rose); outline-offset: 2px; }
+.contact-form select:focus { outline: 2px solid var(--teal); outline-offset: 2px; }
 .contact-form .consent-option { display: flex; align-items: flex-start; gap: 0.7rem; font-weight: 400; }
 .consent-option input { margin-top: 0.15rem; }
 .form-note { margin: 0; }
 .contact-form .button-link { justify-self: start; }
-.form-status { min-height: 1.5rem; color: var(--rose-dark); }
+.form-status { min-height: 1.5rem; color: var(--teal-dark); }
 .not-found { display: grid; align-content: center; justify-items: start; }
 
 .site-footer {
